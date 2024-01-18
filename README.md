@@ -1,16 +1,11 @@
 # flutter_basics
 
-A new Flutter project.
+A project for learning basic Flutter from the following online resources
 
-## Getting Started
+* [37 hour long YouTube Course](https://youtu.be/VPvVD8t02U8?si=ywqiXLdLRAm7PDtc)
 
-This project is a starting point for a Flutter application.
+Some of the topics covered are 
+-  Flutter widgets such as Scaffold, TextField, TextEditingController
+- Firebase for auth purposes
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Check the `dev_krishan` branch
