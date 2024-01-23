@@ -74,9 +74,17 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredential =
-                          await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-                      print(userCredential.user?.email);
+                      try {
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(email: email, password: password);
+                        print(userCredential.user?.email);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('User not found');
+                        } else if (e.code == 'wrong-password'){
+                          print('wrong password');
+                        }
+                      }
                     },
                     child: const Text('Register'),
                   ),
