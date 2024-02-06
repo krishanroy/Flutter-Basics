@@ -22,19 +22,32 @@ class UserListPage extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data?.length,
               itemBuilder: (context, index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Theme.of(context).colorScheme.outline),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserDetailScreen(
+                          user: snapshot.data!.toList()[index],
+                        ),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Theme.of(context).colorScheme.outline),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(12),
+                      ),
                     ),
-                  ),
-                  child: SizedBox(
-                    width: 300,
-                    height: 200,
-                    child: Center(
-                      child: Text(
-                        snapshot.data!.toList()[index].name.toString(),
+                    child: SizedBox(
+                      width: 300,
+                      height: 200,
+                      child: Center(
+                        child: Text(
+                          style: const TextStyle(fontSize: 30),
+                          '${snapshot.data!.toList()[index].name}',
+                        ),
                       ),
                     ),
                   ),
@@ -44,9 +57,27 @@ class UserListPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return const Text('Something went wrong');
           } else {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
         },
+      ),
+    );
+  }
+}
+
+class UserDetailScreen extends StatelessWidget {
+  const UserDetailScreen({super.key, required this.user});
+
+  final User user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('User Detail'),
+      ),
+      body: Center(
+        child: Text('${user.email}', style: const TextStyle(fontSize: 40),),
       ),
     );
   }
